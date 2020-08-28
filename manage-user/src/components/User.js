@@ -20,9 +20,9 @@ export class User extends React.Component {
                             <div>
                                 <p> Name: {name}</p>
                             </div>
-                                <button style={btnStyle} onClick={() => toggleDetailsOf(id)}>
-                                    Show details 
-                                </button>
+                            <button style={btnStyle} onClick={() => toggleDetailsOf(id)}>
+                                Show details 
+                            </button>
                         </div>
                     ) : (
                         <div>

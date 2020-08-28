@@ -2,55 +2,62 @@ import React from 'react';
 import './App.css';
 
 import Header from './components/Header';
+import Search from './components/Search';
 import UsersList from './components/UsersList';
 
 class App extends React.Component {
 
   state = {
     query: "",
+    queriedUsers: [],
     users: [
       {
         id: 0,
-        name: "X",
-        email: "X@gmail.com",
-        phoneNumber: "123",
-        department: "dep",
+        name: "LBJ",
+        email: "LBJ@gmail.com",
+        phoneNumber: "23",
+        department: "LBJdeparment",
         showAll: false
       },
       {
         id: 1,
-        name: "Y",
-        email: "Y@gmail.com",
-        phoneNumber: "124",
-        department: "dep",
+        name: "KD",
+        email: "KD@gmail.com",
+        phoneNumber: "35",
+        department: "KDdeparment",
         showAll: false
       },
       {
         id: 2,
-        name: "A",
-        email: "A@gmail.com",
-        phoneNumber: "125",
-        department: "dep",
+        name: "SC",
+        email: "SC@gmail.com",
+        phoneNumber: "30",
+        department: "SCdeparment",
         showAll: false
       },
       {
         id: 3,
-        name: "B",
-        email: "B@gmail.com",
-        phoneNumber: "126",
-        department: "dep",
+        name: "JH",
+        email: "JH@gmail.com",
+        phoneNumber: "13",
+        department: "JHdeparment",
         showAll: false
       },
       {
         id: 4,
-        name: "C",
-        email: "C@gmail.com",
-        phoneNumber: "127",
-        department: "dep",
+        name: "RW",
+        email: "RW@gmail.com",
+        phoneNumber: "0",
+        department: "RWdeparment",
         showAll: false
       }
     ]
   };
+
+  constructor() {
+    super();
+    this.state.queriedUsers = this.state.users;
+  }
 
   toggleDetailsOf = (idx) => {
     const newUsers = this.state.users;
@@ -61,22 +68,39 @@ class App extends React.Component {
     });
   }
 
-  searchFor = (query) => {
+  handleChange = (e) => {
+    this.setState({
+      query: e.target.value,
+      users: this.state.users
+    });
+  }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const query = this.state.query;
+    if(query.length === 0) {
+      this.setState({
+        ...this.state,
+        queriedUsers: this.state.users
+      });
+    } else {
+      const queriedUsers = this.state.users.filter(function (user) {
+        return user.name === query || user.email === query;
+      });
+      this.setState({
+        ...this.state,
+        queriedUsers: queriedUsers
+      });
+    }
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <section className="section">
-          <form onSubmit={this.searchFor}>
-            <input placeholder="Search for..." 
-            type="text"
-            value="" />
-          </form>
-        </section>
-        <UsersList users={this.state.users} 
+        <Search handleChange={this.handleChange} 
+        handleSubmit={this.handleSubmit} />
+        <UsersList users={this.state.queriedUsers} 
         toggleDetailsOf={this.toggleDetailsOf}/>
       </div>
     );
