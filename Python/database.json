@@ -35,6 +35,12 @@
             "email": "KI@gmail",
             "phoneNumber": "2",
             "department": "KIdepartment"
+        },
+        {
+            "name": "DL",
+            "email": "DL@gmail",
+            "phoneNumber": "1",
+            "department": "DLdepartment"
         }
     ]
 }

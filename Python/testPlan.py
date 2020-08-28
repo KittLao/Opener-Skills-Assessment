@@ -15,12 +15,19 @@ class TestPlan:
         self.getApprovalsHigh(self.author.managers, self.stages["High"][1])
 
     def prettyPrint(self):
-        print("Stage " + self.currentStage + ":\n")
-        if self.stages[self.currentStage][0]:
-            print("Has been approved by: ", self.stages[self.currentStage][0])
-        else:
-            print("Has not been approved yet. Here are the people eligible to approve:")
-            print(self.stages[self.currentStage][1])
+        print("The current stage for this test plan is:", self.currentStage)
+        for stage in self.stages:
+            if stage == "Finished":
+                break
+            print("--------------------------------\n")
+            print("Stage " + stage + ":")
+            if self.stages[stage][0]:
+                print("Has been approved by: ", self.stages[stage][0])
+            else:
+                print("Has not been approved yet. Here are the people eligible to approve:")
+                for user in self.stages[stage][1]:
+                    print(user)
+            print("--------------------------------\n")
 
     def approve(self, approver):
         # Already finished
@@ -48,4 +55,4 @@ class TestPlan:
     def getApprovalsHigh(self, managers, approvers=set()):
         for manager in managers:
             approvers.update(manager.managers)
-            self.getApprovalsHigh(manager, approvers)
+            self.getApprovalsHigh(manager.managers, approvers)

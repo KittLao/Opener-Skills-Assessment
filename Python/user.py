@@ -14,6 +14,7 @@ class User:
 
     def __repr__(self):
         userRepr = '\n'
+        userRepr += "(CEO)\n" if self.isCEO  else '\n'
         userRepr += "Name: " + self.name + '\n'
         userRepr += "Email: " + self.email + '\n'
         userRepr += "Phone Number: " + self.phoneNumber + '\n'
