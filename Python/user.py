@@ -1,12 +1,13 @@
 # User is a node where it has access to who it directly
 # manages and who directly manages them
 class User:
-    def __init__(self, name, email, phoneNumber, department):
+    def __init__(self, name, email, phoneNumber, department, isCEO=False):
         # Basic info
         self.name = name
         self.email = email
         self.phoneNumber = phoneNumber
         self.department = department
+        self.isCEO = isCEO
         # Pointers to managers and who it manages
         self.managers = {}
         self.manages = {}

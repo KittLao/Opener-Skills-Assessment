@@ -30,6 +30,9 @@ class Database:
         # Both users need to exist in database
         if userA not in self.users or userB not in self.users:
             return False
+        # Nobody can manage the CEO
+        if userB.isCEO:
+            return False
         # A user cannot manage someone who is directly or
         # indirectly managin them.
         if self.directOrIndirectManagers(userA, userB):
@@ -45,5 +48,15 @@ class Database:
             if self.directOrIndirectManagers(userA, managers):
                 return True
         return False
+
+    def connectToCEO(self, user, minSequence=0):
+        if user.isCEO:
+            return minSequence
+        optSequence = len(self.users)
+        for manager in user.managers:
+            sequence = self.connectToCEO(manager, minSequence + 1)
+            optSequence = min(optSequence, sequence)
+        return optSequence
+
 
 
