@@ -1,6 +1,6 @@
 # Database is a graph where each node is a user
 class Database:
-    def __init__(self, users={}):
+    def __init__(self, users=set()):
         self.users = users
 
     def addUser(self, user):
@@ -52,6 +52,9 @@ class Database:
     def connectToCEO(self, user, minSequence=0):
         if user.isCEO:
             return minSequence
+        # Invalid
+        if not user.isCEO and len(user.managers) == 0:
+            return -1
         optSequence = len(self.users)
         for manager in user.managers:
             sequence = self.connectToCEO(manager, minSequence + 1)

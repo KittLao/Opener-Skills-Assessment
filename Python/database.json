@@ -1,0 +1,40 @@
+{
+    "users": [
+        {
+            "name": "LBJ",
+            "email": "LBJ@gmail",
+            "phoneNumber": "23",
+            "department": "LBJdepartment"
+        },
+        {
+            "name": "KD",
+            "email": "KD@gmail",
+            "phoneNumber": "35",
+            "department": "KDdepartment"
+        },
+        {
+            "name": "SC",
+            "email": "SC@gmail",
+            "phoneNumber": "30",
+            "department": "SCdepartment"
+        },
+        {
+            "name": "JH",
+            "email": "JH@gmail",
+            "phoneNumber": "13",
+            "department": "JHdepartment"
+        },
+        {
+            "name": "RW",
+            "email": "RW@gmail",
+            "phoneNumber": "0",
+            "department": "RWdepartment"
+        },
+        {
+            "name": "KI",
+            "email": "KI@gmail",
+            "phoneNumber": "2",
+            "department": "KIdepartment"
+        }
+    ]
+}

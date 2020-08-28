@@ -9,13 +9,13 @@ class User:
         self.department = department
         self.isCEO = isCEO
         # Pointers to managers and who it manages
-        self.managers = {}
-        self.manages = {}
+        self.managers = set()
+        self.manages = set()
 
     def __repr__(self):
         userRepr = '\n'
-        userRepr += self.name + '\n'
-        userRepr += self.email + '\n'
-        userRepr += self.phoneNumber + '\n'
-        userRepr += self.department + '\n'
+        userRepr += "Name: " + self.name + '\n'
+        userRepr += "Email: " + self.email + '\n'
+        userRepr += "Phone Number: " + self.phoneNumber + '\n'
+        userRepr += "Department: " + self.department + '\n'
         return userRepr

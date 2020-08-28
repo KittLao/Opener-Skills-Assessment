@@ -2,9 +2,9 @@ class TestPlan:
     def __init__(self, author):
         # Maps the stage to whoever approved it and people who
         # are eligible to approve it.
-        self.stages = {"Low": [None, {}], 
-                "Moderate": [None, {}], 
-                "High": [None, {}], 
+        self.stages = {"Low": [None, set()], 
+                "Moderate": [None, set()], 
+                "High": [None, set()], 
                 "Finished": []
                 }
         self.author = author
@@ -39,13 +39,13 @@ class TestPlan:
         # Cannot approve
         return False
 
-    def getApprovalsLow(self, approvers={}):
+    def getApprovalsLow(self, approvers=set()):
         approvers.add(self.author)
 
-    def getApprovalsModerate(self, approvers={}):
+    def getApprovalsModerate(self, approvers=set()):
         approvers.update(self.author.managers)
 
-    def getApprovalsHigh(self, managers, approvers={}):
+    def getApprovalsHigh(self, managers, approvers=set()):
         for manager in managers:
             approvers.update(manager.managers)
             self.getApprovalsHigh(manager, approvers)
